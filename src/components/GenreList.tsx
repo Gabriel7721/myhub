@@ -16,17 +16,17 @@ interface Props {
 }
 
 const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
-  const { data, error, isLoading } = useGenre();
+  const { data, error, loading } = useGenre();
   if (error) return null;
-  if (isLoading) return <Spinner />;
+  if (loading) return <Spinner />;
 
   return (
     <>
       <Heading>Genres</Heading>
       <List.Root>
         {data.map((g) => (
-          <HStack>
-            <List.Item key={g.id}>
+          <List.Item key={g.id}>
+            <HStack>
               <Image
                 boxSize={"32px"}
                 borderRadius={8}
@@ -42,8 +42,8 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
                 onClick={() => onSelectedGenre(g)}>
                 {g.name}
               </Button>
-            </List.Item>
-          </HStack>
+            </HStack>
+          </List.Item>
         ))}
       </List.Root>
     </>
